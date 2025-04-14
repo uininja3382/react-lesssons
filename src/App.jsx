@@ -1,7 +1,9 @@
 import { Component } from "react";
 import Users from "./components/Users";
 import "./App.css";
-import RefExample from "./components/Hooks/Refs";
+import FocusInputCard from "./components/Hooks/Refs/FocusInputCard";
+import Timer from "./components/Hooks/Refs/Timer";
+import DocumentRefExample from "./components/Hooks/Refs/ScrollRef";
 
 class App extends Component {
   constructor() {
@@ -11,6 +13,7 @@ class App extends Component {
       users: [],
       reset: false,
       IsRef: true,
+      IsContext: false,
     };
   }
   async fetchData() {
@@ -43,7 +46,7 @@ class App extends Component {
               <Users data={users} />
             </>
           ) : (
-            <RefExample />
+            <Timer />
           )}
         </section>
       </>

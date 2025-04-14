@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Users from "./components/Users";
 import "./App.css";
+import RefExample from "./components/Hooks/Refs";
 
 class App extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class App extends Component {
       theme: "light",
       users: [],
       reset: false,
+      IsRef: true,
     };
   }
   async fetchData() {
@@ -27,13 +29,13 @@ class App extends Component {
     this.setState({ users });
   }
   render() {
-    const { users, reset } = this.state;
+    const { users, reset, IsRef } = this.state;
     return (
       <>
         <section className="layout">
           {" "}
           {/* Conditional Rendering */}
-          {!reset ? (
+          {!reset && !IsRef ? (
             <>
               <h1 className="flex text-3xl justify-center text-orange-400">
                 User Cards
@@ -41,7 +43,7 @@ class App extends Component {
               <Users data={users} />
             </>
           ) : (
-            <div>Something is wrong!!</div>
+            <RefExample />
           )}
         </section>
       </>

@@ -34,13 +34,6 @@ const Users = ({ data }) => {
 
   return (
     <>
-      <button
-        onClick={() => setCount(count + 1)}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-      >
-        Click Me {count}
-      </button>
-
       <div className="grid grid-cols-3 gap-x-8 gap-y-4">
         {data.map((user) => (
           <Card user={user} post={posts?.[user?.id]} />

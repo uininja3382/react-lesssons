@@ -4,6 +4,7 @@ import "./App.css";
 import FocusInputCard from "./components/Hooks/Refs/FocusInputCard";
 import Timer from "./components/Hooks/Refs/Timer";
 import DocumentRefExample from "./components/Hooks/Refs/ScrollRef";
+import Drilling from "./components/Hooks/Context/Drilling";
 
 class App extends Component {
   constructor() {
@@ -12,8 +13,8 @@ class App extends Component {
       theme: "light",
       users: [],
       reset: false,
-      IsRef: true,
-      IsContext: false,
+      IsRef: false,
+      IsContext: true,
     };
   }
   async fetchData() {
@@ -32,13 +33,13 @@ class App extends Component {
     this.setState({ users });
   }
   render() {
-    const { users, reset, IsRef } = this.state;
+    const { users, reset, IsRef, IsContext } = this.state;
     return (
       <>
         <section className="layout">
           {" "}
           {/* Conditional Rendering */}
-          {!reset && !IsRef ? (
+          {!reset && !IsRef && !IsContext ? (
             <>
               <h1 className="flex text-3xl justify-center text-orange-400">
                 User Cards
@@ -46,7 +47,7 @@ class App extends Component {
               <Users data={users} />
             </>
           ) : (
-            <Timer />
+            <Drilling />
           )}
         </section>
       </>

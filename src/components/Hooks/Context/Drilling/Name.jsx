@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { studentContext } from "../../../../assets/Context/studentContext";
+import { studentContext } from "../../../../context/studentContext";
 
 const Name = () => {
   const { name } = useContext(studentContext);

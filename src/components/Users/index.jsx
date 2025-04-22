@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Card from "../Card";
+import { UsersContext } from "../../context/UsersProvider";
 
 const Users = ({ data }) => {
   const [posts, setPosts] = useState([]);
   const [count, setCount] = useState(0);
-
+  const { name } = useContext(UsersContext);
   const fetchPosts = async () => {
     try {
       const response = await fetch(
@@ -34,6 +35,7 @@ const Users = ({ data }) => {
 
   return (
     <>
+      <p>{name}</p>
       <div className="grid grid-cols-3 gap-x-8 gap-y-4">
         {data.map((user) => (
           <Card user={user} post={posts?.[user?.id]} />

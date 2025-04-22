@@ -5,6 +5,7 @@ import FocusInputCard from "./components/Hooks/Refs/FocusInputCard";
 import Timer from "./components/Hooks/Refs/Timer";
 import DocumentRefExample from "./components/Hooks/Refs/ScrollRef";
 import Drilling from "./components/Hooks/Context/Drilling";
+import { UsersContext } from "./context/UsersProvider";
 
 class App extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class App extends Component {
       users: [],
       reset: false,
       IsRef: false,
-      IsContext: true,
+      IsContext: false,
     };
   }
   async fetchData() {
@@ -36,20 +37,27 @@ class App extends Component {
     const { users, reset, IsRef, IsContext } = this.state;
     return (
       <>
-        <section className="layout">
-          {" "}
-          {/* Conditional Rendering */}
-          {!reset && !IsRef && !IsContext ? (
-            <>
-              <h1 className="flex text-3xl justify-center text-orange-400">
-                User Cards
-              </h1>
-              <Users data={users} />
-            </>
-          ) : (
-            <Drilling />
-          )}
-        </section>
+        <UsersContext.Consumer>
+          {(context) => {
+            const { name } = context;
+            return (
+              <section className="layout">
+                {" "}
+                {/* Conditional Rendering */}
+                {!reset && !IsRef && !IsContext ? (
+                  <>
+                    <h1 className="flex text-3xl justify-center text-orange-400">
+                      User Cards {name}
+                    </h1>
+                    <Users data={users} />
+                  </>
+                ) : (
+                  <Drilling />
+                )}
+              </section>
+            );
+          }}
+        </UsersContext.Consumer>
       </>
     );
   }

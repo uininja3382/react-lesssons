@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { studentContext } from "../../../../assets/Context/studentContext";
+import { studentContext } from "../../../../context/studentContext";
 import Name from "./Name";
 import Age from "./age";
 
